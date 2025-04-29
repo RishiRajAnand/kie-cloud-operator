@@ -7,7 +7,7 @@ metadata:
     categories: Integration & Delivery
     certified: "false"
     containerImage: quay.io/kiegroup/kie-cloud-operator:8.0.7
-    createdAt: "2025-04-17 10:08:01"
+    createdAt: "2025-04-29 17:39:06"
     description: Deploys and manages IBM Business Automation Manager Open Editions
       environment.
     features.operators.openshift.io/disconnected: "false"
@@ -27,7 +27,7 @@ metadata:
     operator-bamoe-businessautomation: "true"
     operatorframework.io/arch.amd64: supported
     operatorframework.io/os.linux: supported
-  name: bamoe-businessautomation-operator.8.0.7-2-dev-mjc6hct54r
+  name: bamoe-businessautomation-operator.8.0.7-2-dev-6fskqwx6d7
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -192,7 +192,7 @@ spec:
                 - name: RELATED_IMAGE_PAM_DASHBUILDER_IMAGE_8.0.7
                   value: registry.redhat.io/ibm-bamoe/bamoe-dashbuilder-rhel8:8.0.7
                 - name: RELATED_IMAGE_OSE_CLI_IMAGE_8.0.7
-                  value: registry.redhat.io/openshift4/ose-cli:v4.14
+                  value: registry.redhat.io/openshift4/ose-cli:v4.16
                 - name: RELATED_IMAGE_MYSQL_PROXY_IMAGE_8.0.7
                   value: registry.redhat.io/rhscl/mysql-80-rhel7:latest
                 - name: RELATED_IMAGE_POSTGRESQL_PROXY_IMAGE_8.0.7
@@ -216,7 +216,7 @@ spec:
                 - name: RELATED_IMAGE_PAM_DASHBUILDER_IMAGE_8.0.6
                   value: registry.redhat.io/ibm-bamoe/bamoe-dashbuilder-rhel8:8.0.6
                 - name: RELATED_IMAGE_OSE_CLI_IMAGE_8.0.6
-                  value: registry.redhat.io/openshift4/ose-cli:v4.14
+                  value: registry.redhat.io/openshift4/ose-cli:v4.16
                 - name: RELATED_IMAGE_MYSQL_PROXY_IMAGE_8.0.6
                   value: registry.redhat.io/rhscl/mysql-80-rhel7:latest
                 - name: RELATED_IMAGE_POSTGRESQL_PROXY_IMAGE_8.0.6
@@ -227,6 +227,10 @@ spec:
                   value: registry.redhat.io/amq7/amq-broker:7.8
                 - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_LATEST
                   value: registry.redhat.io/openshift4/ose-oauth-proxy:latest
+                - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.16
+                  value: registry.redhat.io/openshift4/ose-oauth-proxy:v4.16
+                - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.15
+                  value: registry.redhat.io/openshift4/ose-oauth-proxy:v4.15
                 - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.14
                   value: registry.redhat.io/openshift4/ose-oauth-proxy:v4.14
                 - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.13
@@ -408,7 +412,7 @@ spec:
   - operator
   labels:
     alm-owner-bamoe-businessautomation: bamoe-businessautomation-operator
-    operated-by: bamoe-businessautomation-operator.8.0.7-2-dev-mjc6hct54r
+    operated-by: bamoe-businessautomation-operator.8.0.7-2-dev-6fskqwx6d7
   links:
   - name: Product Page
     url: https://ibm.com
@@ -424,5 +428,5 @@ spec:
   selector:
     matchLabels:
       alm-owner-bamoe-businessautomation: bamoe-businessautomation-operator
-      operated-by: bamoe-businessautomation-operator.8.0.7-2-dev-mjc6hct54r
-  version: 8.0.7-2+mjc6hct54r
+      operated-by: bamoe-businessautomation-operator.8.0.7-2-dev-6fskqwx6d7
+  version: 8.0.7-2+6fskqwx6d7
