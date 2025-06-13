@@ -325,12 +325,12 @@ func main() {
 			},
 		}
 
-        // update/create cluster roles and bindings / service account yaml files
-        createFile("deploy/role.yaml", role)
-        createFile("deploy/cluster_role.yaml", clusterRole)
-        createFile("deploy/cluster_role_binding.yaml", components.GetClusterRoleBinding(csv.OperatorName))
-        createFile("deploy/role_binding.yaml", components.GetRoleBinding(csv.OperatorName))
-        createFile("deploy/service_account.yaml", components.GetServiceAccount(csv.OperatorName))
+		// update/create cluster roles and bindings / service account yaml files
+		createFile("deploy/role.yaml", role)
+		createFile("deploy/cluster_role.yaml", clusterRole)
+		createFile("deploy/cluster_role_binding.yaml", components.GetClusterRoleBinding(csv.OperatorName))
+		createFile("deploy/role_binding.yaml", components.GetRoleBinding(csv.OperatorName))
+		createFile("deploy/service_account.yaml", components.GetServiceAccount(csv.OperatorName))
 
 		bundleDir := "deploy/olm-catalog/prod/" + *ver + "/"
 		if csv.Maturity == "dev" {
