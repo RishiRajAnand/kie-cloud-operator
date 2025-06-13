@@ -338,8 +338,6 @@ func main() {
 			templateStruct.Annotations["certified"] = "false"
 			deployFile := "deploy/operator.yaml"
 			createFile(deployFile, deployment)
-			roleFile := "deploy/role.yaml"
-			createFile(roleFile, role)
 		}
 		if csv.Maturity == "test" {
 			bundleDir = "deploy/olm-catalog/test/" + *ver + "/"
