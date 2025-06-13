@@ -325,7 +325,7 @@ func main() {
 			},
 		}
 
-        // update/create cluster roles and bindings / service account yaml filesAdd commentMore actions
+        // update/create cluster roles and bindings / service account yaml files
         createFile("deploy/role.yaml", role)
         createFile("deploy/cluster_role.yaml", clusterRole)
         createFile("deploy/cluster_role_binding.yaml", components.GetClusterRoleBinding(csv.OperatorName))

@@ -371,7 +371,7 @@ func GetClusterRoleBinding(operatorName string) *rbacv1.ClusterRoleBinding {
 			APIGroup: rbacv1.SchemeGroupVersion.Group,
 			Kind:     "ClusterRole",
 			Name:     operatorName,
-		},Add commentMore actions
+		},
 		Subjects: []rbacv1.Subject{
 			{
 				APIGroup:  rbacv1.SchemeGroupVersion.Group,
