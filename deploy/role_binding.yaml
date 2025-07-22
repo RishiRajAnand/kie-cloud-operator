@@ -7,5 +7,6 @@ roleRef:
   kind: Role
   name: bamoe-business-automation-operator
 subjects:
-  - kind: ServiceAccount
-    name: bamoe-bamoe-business-automation-operator
+- apiGroup: rbac.authorization.k8s.io
+  kind: ServiceAccount
+  name: bamoe-business-automation-operator
