@@ -87,10 +87,6 @@ spec:
           value: registry.redhat.io/amq7/amq-broker:7.8
         - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_LATEST
           value: registry.redhat.io/openshift4/ose-oauth-proxy:latest
-        - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.16
-          value: registry.redhat.io/openshift4/ose-oauth-proxy:v4.16
-        - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.15
-          value: registry.redhat.io/openshift4/ose-oauth-proxy:v4.15
         - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.14
           value: registry.redhat.io/openshift4/ose-oauth-proxy:v4.14
         - name: RELATED_IMAGE_OAUTH_PROXY_IMAGE_4.13
