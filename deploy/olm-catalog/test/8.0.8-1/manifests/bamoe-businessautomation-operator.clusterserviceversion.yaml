@@ -192,7 +192,7 @@ spec:
                 - name: RELATED_IMAGE_PAM_DASHBUILDER_IMAGE_8.0.8
                   value: registry-proxy.engineering.redhat.com/ibm-bamoe/bamoe-dashbuilder-rhel8:8.0.8
                 - name: RELATED_IMAGE_OSE_CLI_IMAGE_8.0.8
-                  value: registry.redhat.io/openshift4/ose-cli:v4.16
+                  value: registry.redhat.io/openshift4/ose-cli:v4.15
                 - name: RELATED_IMAGE_MYSQL_PROXY_IMAGE_8.0.8
                   value: registry.redhat.io/rhscl/mysql-80-rhel7:latest
                 - name: RELATED_IMAGE_POSTGRESQL_PROXY_IMAGE_8.0.8
@@ -216,7 +216,7 @@ spec:
                 - name: RELATED_IMAGE_PAM_DASHBUILDER_IMAGE_8.0.7
                   value: registry.redhat.io/ibm-bamoe/bamoe-dashbuilder-rhel8:8.0.7
                 - name: RELATED_IMAGE_OSE_CLI_IMAGE_8.0.7
-                  value: registry.redhat.io/openshift4/ose-cli:v4.16
+                  value: registry.redhat.io/openshift4/ose-cli:v4.15
                 - name: RELATED_IMAGE_MYSQL_PROXY_IMAGE_8.0.7
                   value: registry.redhat.io/rhscl/mysql-80-rhel7:latest
                 - name: RELATED_IMAGE_POSTGRESQL_PROXY_IMAGE_8.0.7
