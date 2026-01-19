@@ -1,6 +1,6 @@
 module github.com/kiegroup/kie-cloud-operator
 
-go 1.17
+go 1.18
 
 require (
 	github.com/RHsyseng/console-cr-form v0.0.0-00010101000000-000000000000
