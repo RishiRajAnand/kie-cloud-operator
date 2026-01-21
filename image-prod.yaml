@@ -2,7 +2,7 @@
   name: "builder"
   description: "Golang builder image"
   version: ""
-  from: "registry.redhat.io/ubi8/go-toolset:1.23.9"
+  from: "registry.redhat.io/ubi8/go-toolset:1.25.3"
   modules:
     repositories:
       - path: modules/builder-prod
