@@ -39,7 +39,7 @@ var (
 	helloRules           = "hello-rules" + latestTag
 	byeRules             = "bye-rules" + latestTag
 	kieServerName        = "test-kieserver"
-	rhpamKieserverAndTag = "bamoe-kieserver-rhel8:%s"
+	rhpamKieserverAndTag = "bamoe-kieserver-rhel9:%s"
 	pimImage             = constants.IBMBamoeImagePrefix + "-process-migration" + constants.RhelVersion
 	bcKeySecret          = fmt.Sprintf(constants.KeystoreSecret, "test-businesscentral")
 )
@@ -345,7 +345,7 @@ func commonDashbuilderAssertions(t *testing.T, env api.Environment, cr *api.KieA
 	assert.Equal(t, "1536Mi", cr.Status.Applied.Objects.Dashbuilder.Resources.Requests.Memory().String())
 
 	checkClusterLabels(t, cr, env.Dashbuilder)
-	checkObjectLabels(t, cr, env.Dashbuilder, "PAM", "rhpam-dashbuilder-rhel8")
+	checkObjectLabels(t, cr, env.Dashbuilder, "PAM", "rhpam-dashbuilder-rhel9")
 }
 
 func TestRHPAMDashbuilderEnvironmentWithCustomProperties(t *testing.T) {
@@ -554,7 +554,7 @@ func TestRhdmAuthoringHAEnvironment(t *testing.T) {
 	assert.Equal(t, "test-rhdmcentr", getEnvVariable(env.Servers[0].DeploymentConfigs[0].Spec.Template.Spec.Containers[0], "WORKBENCH_SERVICE_NAME"), "Variable should exist")
 	assert.Equal(t, "ws", getEnvVariable(env.Servers[0].DeploymentConfigs[0].Spec.Template.Spec.Containers[0], "KIE_SERVER_CONTROLLER_PROTOCOL"), "Variable should exist")
 	assert.Equal(t, "test-rhdmcentr", getEnvVariable(env.Servers[0].DeploymentConfigs[0].Spec.Template.Spec.Containers[0], "KIE_SERVER_CONTROLLER_SERVICE"), "Variable should exist")
-	assert.Equal(t, constants.ImageRegistry+"/"+constants.IBMBamoeImageContext+"/"+constants.IBMBamoeImagePrefix+"-businesscentral-rhel8"+":"+cr.Status.Applied.Version, env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Image)
+	assert.Equal(t, constants.ImageRegistry+"/"+constants.IBMBamoeImageContext+"/"+constants.IBMBamoeImagePrefix+"-businesscentral-rhel9"+":"+cr.Status.Applied.Version, env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Image)
 	for i := 0; i < len(env.Servers); i++ {
 		assert.Equal(t, "DEVELOPMENT", getEnvVariable(env.Servers[i].DeploymentConfigs[0].Spec.Template.Spec.Containers[0], "KIE_SERVER_MODE"))
 	}
@@ -592,7 +592,7 @@ func TestRhpamAuthoringHAEnvironment(t *testing.T) {
 	assert.Nil(t, err, "Error getting prod environment")
 	checkAuthoringHAEnv(t, cr, env, constants.RhpamPrefix)
 	assert.Equal(t, "3Gi", env.Console.PersistentVolumeClaims[0].Spec.Resources.Requests.Storage().String())
-	assert.Equal(t, constants.ImageRegistry+"/"+constants.IBMBamoeImageContext+"/"+constants.IBMBamoeImagePrefix+"-businesscentral-rhel8"+":"+cr.Status.Applied.Version, env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Image)
+	assert.Equal(t, constants.ImageRegistry+"/"+constants.IBMBamoeImageContext+"/"+constants.IBMBamoeImagePrefix+"-businesscentral-rhel9"+":"+cr.Status.Applied.Version, env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Image)
 	amqClusterPassword := getEnvVariable(env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0], "APPFORMER_JMS_BROKER_PASSWORD")
 	assert.Equal(t, "cluster", amqClusterPassword, "Expected provided password to take effect, but found %v", amqClusterPassword)
 	amqPassword := getEnvVariable(env.Others[0].StatefulSets[1].Spec.Template.Spec.Containers[0], "AMQ_PASSWORD")
@@ -1668,7 +1668,7 @@ func TestKieAppContainerDeploymentWithoutS2iAndNotUseImageTags_BuildConfigNotSet
 
 	// Since there is not Build section with GitSource
 	assert.Len(t, env.Servers[0].BuildConfigs, 0)
-	assert.Equal(t, fmt.Sprintf("%s/%s/%s-kieserver-rhel8:%s",
+	assert.Equal(t, fmt.Sprintf("%s/%s/%s-kieserver-rhel9:%s",
 		constants.ImageRegistry,
 		constants.IBMBamoeImageContext,
 		constants.IBMBamoeImagePrefix,
@@ -1705,7 +1705,7 @@ func TestKieAppContainerDeploymentWithoutS2iAndWithImageTags_BuildConfigNotSet(t
 	// Since there is not Build section with GitSource
 	assert.Len(t, env.Servers[0].BuildConfigs, 0)
 	assert.Equal(t, "openshift", env.Servers[0].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Namespace)
-	assert.Equal(t, constants.IBMBamoeImagePrefix+"-kieserver-rhel8:"+constants.CurrentVersion,
+	assert.Equal(t, constants.IBMBamoeImagePrefix+"-kieserver-rhel9:"+constants.CurrentVersion,
 		env.Servers[0].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 	assert.Equal(t, "ImageStreamTag", env.Servers[0].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Kind)
 }
@@ -2249,7 +2249,7 @@ func TestConstructConsoleObject(t *testing.T) {
 	env = ConsolidateObjects(env, cr)
 	assert.Equal(t, fmt.Sprintf("%s-rhpamcentr", name), env.Console.DeploymentConfigs[0].Name)
 	assert.Equal(t, int32(1), env.Console.DeploymentConfigs[0].Spec.Replicas)
-	assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version),
+	assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version),
 		env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 	for i := range sampleEnv {
 		assert.Contains(t, env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, sampleEnv[i], "Environment merge not functional. Expecting: %v", sampleEnv[i])
@@ -2286,7 +2286,7 @@ func TestConstructDashbuilderObject(t *testing.T) {
 
 	assert.Equal(t, fmt.Sprintf("%s-rhpamdash", name), env.Dashbuilder.DeploymentConfigs[0].Name)
 	assert.Equal(t, int32(1), env.Dashbuilder.DeploymentConfigs[0].Spec.Replicas)
-	assert.Equal(t, fmt.Sprintf("%s/%s/%s-dashbuilder-rhel8:%s", constants.ImageRegistry,
+	assert.Equal(t, fmt.Sprintf("%s/%s/%s-dashbuilder-rhel9:%s", constants.ImageRegistry,
 		constants.IBMBamoeImageContext,
 		constants.IBMBamoeImagePrefix,
 		cr.Status.Applied.Version),
@@ -2294,7 +2294,7 @@ func TestConstructDashbuilderObject(t *testing.T) {
 
 	cr.Spec.UseImageTags = true
 	env, err = GetEnvironment(cr, test.MockService())
-	assert.Equal(t, fmt.Sprintf("%s-dashbuilder-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version),
+	assert.Equal(t, fmt.Sprintf("%s-dashbuilder-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version),
 		env.Dashbuilder.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 
 	cr.Spec.Objects.Dashbuilder.Replicas = Pint32(3)
@@ -2328,7 +2328,7 @@ func TestConstructSmartRouterObject(t *testing.T) {
 	env = ConsolidateObjects(env, cr)
 	assert.Equal(t, fmt.Sprintf("%s-smartrouter", name), env.SmartRouter.DeploymentConfigs[0].Name)
 	assert.Equal(t, int32(2), env.SmartRouter.DeploymentConfigs[0].Spec.Replicas)
-	assert.Equal(t, fmt.Sprintf("%s-smartrouter-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.SmartRouter.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
+	assert.Equal(t, fmt.Sprintf("%s-smartrouter-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.SmartRouter.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 	for i := range sampleEnv {
 		assert.Contains(t, env.SmartRouter.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, sampleEnv[i], "Environment merge not functional. Expecting: %v", sampleEnv[i])
 	}
@@ -2350,7 +2350,7 @@ func TestConstructServerObject(t *testing.T) {
 		env = ConsolidateObjects(env, cr)
 		assert.Equal(t, fmt.Sprintf("%s-kieserver", name), env.Servers[0].DeploymentConfigs[0].Name)
 		assert.Equal(t, int32(1), env.Servers[0].DeploymentConfigs[0].Spec.Replicas)
-		assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
+		assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 		for i := range sampleEnv {
 			assert.Contains(t, env.Servers[0].DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, sampleEnv[i], "Environment merge not functional. Expecting: %v", sampleEnv[i])
 		}
@@ -2507,7 +2507,7 @@ func TestTrialServerEnv(t *testing.T) {
 
 	assert.Equal(t, deployments, len(env.Servers))
 	assert.Equal(t, fmt.Sprintf("%s-kieserver-%d", cr.Name, deployments), env.Servers[deployments-1].DeploymentConfigs[0].Name)
-	assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
+	assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 	assert.Contains(t, env.Servers[deployments-1].DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, envReplace, "Environment overriding not functional")
 	assert.Contains(t, env.Servers[deployments-1].DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, envAddition, "Environment additions not functional")
 	assert.Contains(t, env.Servers[deployments-1].DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, corev1.EnvVar{
@@ -2633,8 +2633,8 @@ func TestRhdmTrialConsoleEnv(t *testing.T) {
 	env = ConsolidateObjects(env, cr)
 
 	assert.Equal(t, fmt.Sprintf("%s-rhdmcentr", cr.Spec.CommonConfig.ApplicationName), env.Console.DeploymentConfigs[0].Name)
-	assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
-	assert.Equal(t, fmt.Sprintf("%s-kieserver-rhel8:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Servers[0].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
+	assert.Equal(t, fmt.Sprintf("%s-businesscentral-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Console.DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
+	assert.Equal(t, fmt.Sprintf("%s-kieserver-rhel9:%s", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Servers[0].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 	adminUser := getEnvVariable(env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0], "KIE_ADMIN_USER")
 	assert.Equal(t, constants.DefaultAdminUser, adminUser, "AdminUser default not being set correctly")
 	assert.Contains(t, env.Console.DeploymentConfigs[0].Spec.Template.Spec.Containers[0].Env, envReplace, "Environment overriding not functional")
@@ -3016,13 +3016,13 @@ func testObjectLabels(t *testing.T, cr *api.KieApp, env api.Environment) {
 	assert.NotNil(t, cr.Spec.Objects.SmartRouter)
 	assert.NotNil(t, cr.Spec.Objects.ProcessMigration)
 	component := "PAM"
-	checkObjectLabels(t, cr, env.Console, component, "rhpam-businesscentral-rhel8")
-	checkObjectLabels(t, cr, env.Dashbuilder, component, "rhpam-dashbuilder-rhel8")
+	checkObjectLabels(t, cr, env.Console, component, "rhpam-businesscentral-rhel9")
+	checkObjectLabels(t, cr, env.Dashbuilder, component, "rhpam-dashbuilder-rhel9")
 	for _, server := range env.Servers {
 		checkObjectLabelsForServer(t, cr, server, component)
 	}
-	checkObjectLabels(t, cr, env.SmartRouter, component, "rhpam-smartrouter-rhel8")
-	checkObjectLabels(t, cr, env.ProcessMigration, component, "rhpam-process-migration-rhel8")
+	checkObjectLabels(t, cr, env.SmartRouter, component, "rhpam-smartrouter-rhel9")
+	checkObjectLabels(t, cr, env.ProcessMigration, component, "rhpam-process-migration-rhel9")
 }
 
 func checkObjectLabels(t *testing.T, cr *api.KieApp, object api.CustomObject, component string, subcomponent string) {
@@ -3510,7 +3510,7 @@ func TestMultipleBuildConfigurations(t *testing.T) {
 	assert.Equal(t, cr.Status.Applied.Objects.Servers[0].Name+latestTag, env.Servers[0].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
 
 	assert.Equal(t, "ImageStreamTag", env.Servers[1].BuildConfigs[0].Spec.Strategy.SourceStrategy.From.Kind)
-	assert.Equal(t, fmt.Sprintf("%s-kieserver-rhel8:%v", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Servers[1].BuildConfigs[0].Spec.Strategy.SourceStrategy.From.Name)
+	assert.Equal(t, fmt.Sprintf("%s-kieserver-rhel9:%v", constants.IBMBamoeImagePrefix, cr.Status.Applied.Version), env.Servers[1].BuildConfigs[0].Spec.Strategy.SourceStrategy.From.Name)
 	assert.Equal(t, "openshift", env.Servers[1].BuildConfigs[0].Spec.Strategy.SourceStrategy.From.Namespace)
 	assert.Len(t, env.Servers[1].ImageStreams, 1)
 	assert.Equal(t, cr.Status.Applied.Objects.Servers[1].Name+latestTag, env.Servers[1].DeploymentConfigs[0].Spec.Triggers[0].ImageChangeParams.From.Name)
@@ -6618,7 +6618,7 @@ func TestClusterLabelsRHPAMDashbuilderDefaultEnvironment(t *testing.T) {
 	}
 	env, err := GetEnvironment(cr, test.MockService())
 	assert.Nil(t, err, "Error getting dashbuilder rhpam default environment environment")
-	checkObjectLabels(t, cr, env.Dashbuilder, "PAM", "rhpam-dashbuilder-rhel8")
+	checkObjectLabels(t, cr, env.Dashbuilder, "PAM", "rhpam-dashbuilder-rhel9")
 	checkClusterLabels(t, cr, env.Dashbuilder)
 	dashClusterLabel := env.Dashbuilder.DeploymentConfigs[0].Spec.Template.Labels[constants.ClusterLabel]
 	assert.Equal(t, dashClusterLabel, dashLabel)

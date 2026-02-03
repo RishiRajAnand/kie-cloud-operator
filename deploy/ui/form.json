@@ -634,7 +634,7 @@
               "label": "Image",
               "required": false,
               "jsonPath": "$.spec.objects.console.image",
-              "description": "The image to use for console e.g. rhpam-businesscentral-rhel8, this param is optional for custom image.",
+              "description": "The image to use for console e.g. rhpam-businesscentral-rhel9, this param is optional for custom image.",
               "type": "text"
             },
             {
@@ -1160,7 +1160,7 @@
                   "label": "Image",
                   "required": false,
                   "jsonPath": "$.spec.objects.servers[*].image",
-                  "description": "The image to use for server e.g. rhpam-kieserver-rhel8, this param is optional for custom image.",
+                  "description": "The image to use for server e.g. rhpam-kieserver-rhel9, this param is optional for custom image.",
                   "type": "text"
                 },
                 {
@@ -2620,7 +2620,7 @@
                   "label": "Image",
                   "required": false,
                   "jsonPath": "$.spec.objects.dashbuilder.image",
-                  "description": "The image to use for Dashbuilder e.g. rhpam-dashbuilder-rhel8, this param is optional for custom image.",
+                  "description": "The image to use for Dashbuilder e.g. rhpam-dashbuilder-rhel9, this param is optional for custom image.",
                   "type": "text"
                 },
                 {
@@ -3066,7 +3066,7 @@
                   "label": "Image",
                   "required": false,
                   "jsonPath": "$.spec.objects.smartRouter.image",
-                  "description": "The image to use for smart router e.g. rhpam-smartrouter-rhel8, this param is optional for custom image.",
+                  "description": "The image to use for smart router e.g. rhpam-smartrouter-rhel9, this param is optional for custom image.",
                   "type": "text"
                 },
                 {
@@ -3341,7 +3341,7 @@
                   "label": "Image",
                   "required": false,
                   "jsonPath": "$.spec.objects.processMigration.image",
-                  "description": "The image to use for Process Instance Migration e.g. rhpam-process-migration-rhel8, this param is optional for custom image.",
+                  "description": "The image to use for Process Instance Migration e.g. rhpam-process-migration-rhel9, this param is optional for custom image.",
                   "type": "text"
                 },
                 {

@@ -18,7 +18,7 @@
             - x86_64
 
 - schema_version: 1
-  name: "ibm-bamoe/bamoe-rhel8-operator"
+  name: "ibm-bamoe/bamoe-rhel9-operator"
   description: "IBM Business Automation Manager Open Editions Operator"
   version: ""
   from: "registry.redhat.io/ubi8-minimal"
@@ -26,7 +26,7 @@
     - name: maintainer
       value: mysphelp@us.ibm.com
     - name: com.redhat.component
-      value: ibm-bamoe-rhel8-operator-container
+      value: ibm-bamoe-rhel9-operator-container
     - name: io.k8s.description
       value: Operator for deploying IBM BAMOE
     - name: io.k8s.display-name
