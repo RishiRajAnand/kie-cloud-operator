@@ -219,7 +219,7 @@ const (
 
 	BrokerVar            = relatedImageVar + "BROKER_IMAGE_"
 	BrokerImage          = "amq-broker"
-	Broker79Image        = "amq-broker-rhel8"
+	Broker79Image        = "amq-broker-rhel9"
 	BrokerImageURL       = ImageRegistry + "/amq7/" + BrokerImage + ":"
 	Broker79ImageBaseURL = ImageRegistry + "/amq7/" + Broker79Image + ":"
 
@@ -232,8 +232,8 @@ const (
 	Datagrid73Image     = "datagrid73-openshift"
 	Datagrid73Component = "jboss-datagrid-7-datagrid73-openshift-container"
 
-	Datagrid8Image     = "datagrid-8-rhel8"
-	Datagrid8Component = "datagrid-datagrid-8-rhel8-container"
+	Datagrid8Image     = "datagrid-8-rhel9"
+	Datagrid8Component = "datagrid-datagrid-8-rhel9-container"
 
 	Datagrid73ImageTag16 = "1.6"
 	Datagrid73ImageURL16 = ImageRegistry + "/jboss-datagrid-7/" + Datagrid73Image + ":" + Datagrid73ImageTag16
@@ -242,7 +242,7 @@ const (
 	Datagrid8ImageURL11 = ImageRegistry + "/datagrid/" + Datagrid8Image + ":" + Datagrid8ImageTag11
 
 	PamContext  = "/" + IBMBamoeImageContext + "/" + IBMBamoeImagePrefix + "-"
-	RhelVersion = "-rhel8"
+	RhelVersion = "-rhel9"
 
 	//Resources Limits and Requests
 	ConsoleProdCPULimit         = "2"
@@ -372,43 +372,43 @@ var ProcessMigrationRequests = map[string]string{
 var Images = []ImageEnv{
 	{
 		Var:       PamKieImageVar,
-		Component: IBMBamoeImageContext + "-7-kieserver-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-kieserver-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "kieserver" + RhelVersion,
 	},
 	{
 		Var:       PamControllerVar,
-		Component: IBMBamoeImageContext + "-7-controller-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-controller-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "controller" + RhelVersion,
 	},
 	{
 		Var:       PamBusinessCentralVar,
-		Component: IBMBamoeImageContext + "-7-businesscentral-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-businesscentral-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "businesscentral" + RhelVersion,
 	},
 	{
 		Var:       PamBCMonitoringVar,
-		Component: IBMBamoeImageContext + "-7-businesscentral-monitoring-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-businesscentral-monitoring-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "businesscentral-monitoring" + RhelVersion,
 	},
 	{
 		Var:       PamSmartRouterVar,
-		Component: IBMBamoeImageContext + "-7-smartrouter-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-smartrouter-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "smartrouter" + RhelVersion,
 	},
 	{
 		Var:       PamProcessMigrationVar,
-		Component: IBMBamoeImageContext + "-7-process-migration-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-process-migration-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "process-migration" + RhelVersion,
 	},
 	{
 		Var:       PamDashbuilderVar,
-		Component: IBMBamoeImageContext + "-7-dashbuilder-rhel8-container",
+		Component: IBMBamoeImageContext + "-7-dashbuilder-rhel9-container",
 		Registry:  ImageRegistry,
 		Context:   PamContext + "dashbuilder" + RhelVersion,
 	},

@@ -2,7 +2,7 @@
   name: "builder"
   description: "Golang builder image"
   version: ""
-  from: "registry.redhat.io/ubi8/go-toolset:1.25.3"
+  from: "registry.redhat.io/ubi9/go-toolset:1.25.3"
   modules:
     repositories:
       - name: builder
@@ -18,15 +18,15 @@
             - x86_64
 
 - schema_version: 1
-  name: "ibm-bamoe/bamoe-rhel8-operator"
+  name: "ibm-bamoe/bamoe-rhel9-operator"
   description: "IBM Business Automation Manager Open Editions Operator"
   version: ""
-  from: "registry.redhat.io/ubi8-minimal"
+  from: "registry.redhat.io/ubi9-minimal"
   labels:
     - name: maintainer
       value: mysphelp@us.ibm.com
     - name: com.redhat.component
-      value: ibm-bamoe-rhel8-operator-container
+      value: ibm-bamoe-rhel9-operator-container
     - name: io.k8s.description
       value: Operator for deploying IBM BAMOE
     - name: io.k8s.display-name
@@ -53,6 +53,6 @@
     extra_dir: osbs-extra
     repository:
       name: containers/ibm-bamoe-operator
-      branch: ibm-bamoe-rhel-8
+      branch: ibm-bamoe-rhel-9
   run:
     user: "1001"
