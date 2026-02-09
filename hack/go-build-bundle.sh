@@ -78,7 +78,7 @@ if [[ ${LOCAL} != true ]]; then
                 }
             },
         "repository":
-            {"name": "containers/ibm-bamoe-operator-bundle", "branch": "ibm-bamoe-rhel-8"}
+            {"name": "containers/ibm-bamoe-operator-bundle", "branch": "ibm-bamoe-rhel-9"}
         }
     }' \
         ${CFLAGS}

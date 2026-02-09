@@ -303,7 +303,7 @@ type KieAppObject struct {
 	KeystoreSecret string `json:"keystoreSecret,omitempty"`
 	// ImageContext The image context to use  e.g. rhpam-7, this param is optional for custom image.
 	ImageContext string `json:"imageContext,omitempty"`
-	// Image The image to use e.g. rhpam-<app>-rhel8, this param is optional for custom image.
+	// Image The image to use e.g. rhpam-<app>-rhel9, this param is optional for custom image.
 	Image string `json:"image,omitempty"`
 	// ImageTag The image tag to use e.g. 7.9.0, this param is optional for custom image.
 	ImageTag string `json:"imageTag,omitempty"`

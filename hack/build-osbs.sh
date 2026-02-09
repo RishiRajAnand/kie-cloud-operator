@@ -207,7 +207,7 @@ cd ../
 COMMIT_HASH=$(git rev-parse HEAD)
 IMAGE_DESCRIPTOR="image-prod.yaml"
 sed -i "s/ref:.*/ref: $COMMIT_HASH/g" ${IMAGE_DESCRIPTOR}
-sed -i "s/\<ibm-bamoe-rhel-8\>/ibm-bamoe-rhel-8-nightly/g" image-prod.yaml
+sed -i "s/\<ibm-bamoe-rhel-9\>/ibm-bamoe-rhel-9-nightly/g" image-prod.yaml
 if [ -n "$DEBUG" ]; then
     echo "using the following ${IMAGE_DESCRIPTOR}"
     cat ${IMAGE_DESCRIPTOR}

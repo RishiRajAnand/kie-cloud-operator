@@ -1,4 +1,4 @@
-FROM registry.redhat.io/ubi8-minimal
+FROM registry.redhat.io/ubi9-minimal
 
 # install operator binary
 COPY build/_output/bin/kie-cloud-operator /usr/local/bin/kie-cloud-operator
