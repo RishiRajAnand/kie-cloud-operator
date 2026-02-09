@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- go v1.17.x
+- go v1.18.x
 - operator-sdk v0.19.2
 - docker 
 - [opm](https://github.com/operator-framework/operator-registry/releases)
